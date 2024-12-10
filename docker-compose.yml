@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./backend/src:/src"
+    environment:
+      - SANIC_REQUEST_TIMEOUT=900
+      - SANIC_RESPONSE_TIMEOUT=900
+      - SANIC_REQUEST_MAX_SIZE=200000000
+      - PYTHONUNBUFFERED=1
+      - PICCOLO_CONF=src.piccolo_conf
+  frontend:
+    build: WebUI
+    ports:
+      - "5173:5173"
+    volumes:
+      - "./WebUI/src:/src/src"
+      
+
+     
